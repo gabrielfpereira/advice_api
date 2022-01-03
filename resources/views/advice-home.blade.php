@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styleSlipHome.css">
+    <link rel="stylesheet" href="{{ asset('css/advice.css') }}">
     <title>Gerador de Conselho</title>
 </head>
 <body>
