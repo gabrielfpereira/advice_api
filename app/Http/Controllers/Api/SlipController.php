@@ -26,7 +26,7 @@ class SlipController extends Controller
             'id' => 'required'
         ]);
 
-        $slip = Slip::find($request->id);
+        $slip = Slip::find($request->id)->user();
         return $slip;
     }
 
@@ -70,5 +70,17 @@ class SlipController extends Controller
             'count' => Slip::all()->count()
         ];
         return response()->json($data, 200);
+    }
+
+    public function token(Request $request){
+        $credentials = $request->validate([
+            'email' => ['required'],
+            'password' => ['required']
+        ]);
+        
+        if(Auth::attempt($credentials)){
+            return Auth::user()->createToken('my_token')->plainTextToken;
+        }
+        
     }
 }

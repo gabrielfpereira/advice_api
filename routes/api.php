@@ -27,6 +27,4 @@ Route::middleware('auth:sanctum')->delete('/slip', [SlipController::class, 'dest
 
 Route::get('/random', [SlipController::class, 'random']);
 Route::get('/count', [SlipController::class, 'countSlip']);
-
-
-// {"token":"1|ZDZyu53m8TIRAc8nJTYuP7u49rbkE0GrqLrWm9Ui"}
+Route::post('/token/generator', [SlipController::class, 'token']);
