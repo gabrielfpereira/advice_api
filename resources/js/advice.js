@@ -15,7 +15,7 @@ document.querySelector('#btnGenerationSlip').addEventListener("click", ()=>{
     xhr.addEventListener('load', ()=>{
         //console.log(xhr.response)
         resp = xhr.response
-        document.querySelector('.content-advice').innerHTML = resp.slip.content
+        document.querySelector('.content-advice').innerHTML = resp.advice.content
     })
 
     xhr.send()
