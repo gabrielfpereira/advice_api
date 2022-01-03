@@ -5,19 +5,26 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Advice;
+use App\Services\AdviceService;
 
 class AdviceController extends Controller
 {
+    private $service;
+    public function __construct(AdviceService $service){
+        $this->service = $service;
+    }
     public function store(Request  $request){
-        $request->validate([
-            'content' => 'required|min:5'
-        ]);
+        $data = $this->service->create($request);
+        return response()->json(['data' => $data], 200);
+        // $request->validate([
+        //     'content' => 'required|min:5'
+        // ]);
 
-        $advice = new Advice();
-        $advice->content = $request->content;
-        $advice->user_id = Auth()->user()->id;
-        $advice->save();
-        return $advice;
+        // $advice = new Advice();
+        // $advice->content = $request->content;
+        // $advice->user_id = Auth()->user()->id;
+        // $advice->save();
+        // return $advice;
     }
 
     public function show(Request  $request){
