@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\SlipController;
+use App\Http\Controllers\Api\AdviceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->post('/slip', [SlipController::class, 'store'])->name('api.store');
-Route::middleware('auth:sanctum')->get('/slip', [SlipController::class, 'show']);
-Route::middleware('auth:sanctum')->get('/slip/list', [SlipController::class, 'getList']);
-Route::middleware('auth:sanctum')->put('/slip', [SlipController::class, 'update']);
-Route::middleware('auth:sanctum')->delete('/slip', [SlipController::class, 'destroy']);
+Route::middleware('auth:sanctum')->post('/advice', [AdviceController::class, 'store'])->name('api.store');
+Route::middleware('auth:sanctum')->get('/advice', [AdviceController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/advice/list', [AdviceController::class, 'getList']);
+Route::middleware('auth:sanctum')->put('/advice', [AdviceController::class, 'update']);
+Route::middleware('auth:sanctum')->delete('/advice', [AdviceController::class, 'destroy']);
 
-Route::get('/random', [SlipController::class, 'random']);
-Route::get('/count', [SlipController::class, 'countSlip']);
-Route::post('/token/generator', [SlipController::class, 'token']);
+Route::get('/random', [AdviceController::class, 'random']);
+Route::get('/count', [AdviceController::class, 'countAdvice']);
+Route::post('/token/generator', [AdviceController::class, 'token']);

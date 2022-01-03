@@ -3,22 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Slip;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Advice;
 
-class SlipController extends Controller
+class AdviceController extends Controller
 {
     public function store(Request  $request){
         $request->validate([
             'content' => 'required|min:5'
         ]);
 
-        $slip = new Slip();
-        $slip->content = $request->content;
-        $slip->user_id = Auth()->user()->id;
-        $slip->save();
-        return $slip;
+        $advice = new Advice();
+        $advice->content = $request->content;
+        $advice->user_id = Auth()->user()->id;
+        $advice->save();
+        return $advice;
     }
 
     public function show(Request  $request){
@@ -26,13 +25,13 @@ class SlipController extends Controller
             'id' => 'required'
         ]);
 
-        $slip = Slip::find($request->id);
-        return $slip;
+        $advice = Advice::find($request->id);
+        return $advice;
     }
 
     public function getList(){
-        $slips = Slip::all();
-        return $slips;
+        $advice = Advice::all();
+        return $advice;
     }
 
     public function update(Request  $request){
@@ -40,11 +39,11 @@ class SlipController extends Controller
             'content' => 'required|min:5'
         ]);
 
-        $slip = Slip::find($request->id);
-        $slip->content = $request->content;
-        $slip->save();
+        $advice = Advice::find($request->id);
+        $advice->content = $request->content;
+        $advice->save();
 
-        return $slip;
+        return $advice;
     }
 
     public function destroy(Request  $request){
@@ -52,22 +51,22 @@ class SlipController extends Controller
             'id' => 'required'
         ]);
 
-        $slip = Slip::find($request->id);
-        $slip->delete();
+        $advice = Advice::find($request->id);
+        $advice->delete();
 
         return "ok";
     }
 
     public function random(){
         $data = [
-            'slip' => Slip::all()->random()
+            'advice' => Advice::all()->random()
         ];
         return response()->json($data, 200);
     }
 
-    public function countSlip(){
+    public function countAdvice(){
         $data = [
-            'count' => Slip::all()->count()
+            'count' => Advice::all()->count()
         ];
         return response()->json($data, 200);
     }
