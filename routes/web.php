@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/home', 'slip-home');
+Route::view('/home', 'advice-home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

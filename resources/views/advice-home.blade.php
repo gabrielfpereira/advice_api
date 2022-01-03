@@ -24,7 +24,7 @@
 
         <div class="card">
             <div class="card-body d-flex justify-content-center">
-                <p class="content-slip fs-2 text-center" style="font-weight: 200;"></p>
+                <p class="content-advice fs-2 text-center" style="font-weight: 200;"></p>
             </div>
         </div>
     </div>
