@@ -20,9 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->post('/slip', [SlipController::class, 'store'])->name('api.store');
-Route::middleware('auth:sanctum')->get('/slip/show', [SlipController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/slip', [SlipController::class, 'show']);
 Route::middleware('auth:sanctum')->get('/slip/list', [SlipController::class, 'getList']);
-Route::middleware('auth:sanctum')->post('/slip/update', [SlipController::class, 'update']);
+Route::middleware('auth:sanctum')->put('/slip', [SlipController::class, 'update']);
 Route::middleware('auth:sanctum')->delete('/slip', [SlipController::class, 'destroy']);
 
 Route::get('/random', [SlipController::class, 'random']);

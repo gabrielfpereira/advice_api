@@ -26,7 +26,7 @@ class SlipController extends Controller
             'id' => 'required'
         ]);
 
-        $slip = Slip::find($request->id)->user();
+        $slip = Slip::find($request->id);
         return $slip;
     }
 
