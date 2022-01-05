@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdviceController;
+use App\Http\Controllers\Api\LikeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,6 @@ Route::middleware('auth:sanctum')->delete('/advice', [AdviceController::class, '
 Route::get('/random', [AdviceController::class, 'random']);
 Route::get('/count', [AdviceController::class, 'countAdvice']);
 Route::post('/token/generator', [AdviceController::class, 'token']);
+
+Route::get('/likes', [LikeController::class, 'listLikes']);
+Route::middleware('auth:sanctum')->post('/like', [LikeController::class, 'like']);

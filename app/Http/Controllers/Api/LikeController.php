@@ -23,7 +23,13 @@ class LikeController extends Controller
         $request->validate([
             'like_id' => 'required'
         ]);
-        Link::find($request->like_id)->delete();
+        Like::find($request->like_id)->delete();
         return "destroy";
+    }
+
+    public function listLikes()
+    {
+        $likes = Like::with('user')->get();
+        return response()->json(['likes' => $likes], 200);
     }
 }
