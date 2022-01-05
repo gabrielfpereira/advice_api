@@ -15,66 +15,40 @@ class AdviceController extends Controller
     }
     public function store(Request  $request){
         $data = $this->service->create($request);
-        return response()->json(['data' => $data], 200);
-        // $request->validate([
-        //     'content' => 'required|min:5'
-        // ]);
-
-        // $advice = new Advice();
-        // $advice->content = $request->content;
-        // $advice->user_id = Auth()->user()->id;
-        // $advice->save();
-        // return $advice;
-    }
-
-    public function show(Request  $request){
-        $request->validate([
-            'id' => 'required'
-        ]);
-
-        $advice = Advice::find($request->id);
-        return $advice;
-    }
-
-    public function getList(){
-        $advice = Advice::all();
-        return $advice;
-    }
-
-    public function update(Request  $request){
-        $request->validate([
-            'content' => 'required|min:5'
-        ]);
-
-        $advice = Advice::find($request->id);
-        $advice->content = $request->content;
-        $advice->save();
-
-        return $advice;
-    }
-
-    public function destroy(Request  $request){
-        $request->validate([
-            'id' => 'required'
-        ]);
-
-        $advice = Advice::find($request->id);
-        $advice->delete();
-
-        return "ok";
-    }
-
-    public function random(){
-        $data = [
-            'advice' => Advice::all()->random()
-        ];
         return response()->json($data, 200);
     }
 
-    public function countAdvice(){
-        $data = [
-            'count' => Advice::all()->count()
-        ];
+    public function show(Request  $request)
+    {
+        return $this->service->show($request);
+    }
+
+    public function getList()
+    {
+        $data = $this->service->listAll();
+        return response()->json($data, 200);
+    }
+
+    public function update(Request  $request){
+        $data = $this->service->update($request);
+        return response()->json($data, 200);
+    }
+
+    public function destroy(Request  $request)
+    {
+        $data = $this->service->destroy($request);
+        return response()->json($data, 200);;
+    }
+
+    public function random()
+    {
+        $data = $this->service->random();
+        return response()->json($data, 200);
+    }
+
+    public function countAdvice()
+    {
+        $data = $this->service->countAdvice();
         return response()->json($data, 200);
     }
 

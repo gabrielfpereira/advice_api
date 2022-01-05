@@ -3,19 +3,42 @@
 namespace App\Repositories;
 
 use App\Models\Advice;
+use App\Interfaces\AdviceRepositoryInterface;
 
-class AdviceRepository{
-    private $model;
-
-    public function __construct(Advice $model ){
-        $this->model = $model;
+class AdviceRepository implements AdviceRepositoryInterface{
+    
+    public function create(Array $data)
+    {
+        return Advice::create($data);
     }
 
-    public function create($data)
+    public function update(Array $data, $id)
     {
-        $this->model->content = $data['content'];
-        $this->model->user_id = $data['user_id'];
-        $this->model->save();
-        return $this->model;
+        return Advice::whereId($id)->update($data);
+    }
+
+    public function destroy($id)
+    {
+        return Advice::destroy($id);
+    }
+
+    public function show($id)
+    {
+        return Advice::findOrFail($id);
+    }
+
+    public function listAll()
+    {
+        return Advice::all();
+    }
+
+    public function Random()
+    {
+        return Advice::all()->random();
+    }
+
+    public function countAdvice()
+    {
+        return Advice::all()->count();
     }
 }
